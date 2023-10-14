@@ -14,14 +14,15 @@ options:
 <div
     id="os-container"
     data-text="Archcase 大屋集"
-    data-duration="2000"
-    data-delay="1500"
+    data-duration="2600"
+    data-delay="2400"
     data-font-size="120px"
     data-stroke="#fff"
-    remover
 ></div>
 <!-- 引入echarts -->
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js" defer></script>
 <!-- 引入动画工具，需要在元素之后引用，或者使用异步引入 -->
-<script src="https://cdn.jsdelivr.net/gh/MangSengIt/os-ani@main/os-ani.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/MangSengIt/os-ani@main/os-ani.js" defer></script>
 ```
+## Logs
+1. 2023-10-14: 新增动画退出延时、退出动画、结束动画移出元素的配置
