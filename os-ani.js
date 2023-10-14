@@ -6,19 +6,37 @@
             return console.error("开屏动画启动失败，未找到#os-container元素")
         }
         const text = chartContainer.getAttribute("data-text") || "HELLO OS-ANI"
-        const duration = chartContainer.getAttribute("data-delay") || 3000
+        const duration = chartContainer.getAttribute("data-duration") || 3000
+        const delay = chartContainer.getAttribute("data-delay") || 2000
         const stroke = chartContainer.getAttribute("data-stroke") || "#fff"
         const fontSize = chartContainer.getAttribute("data-font-size") || "120px"
+        const remover = chartContainer.hasAttribute("remover")
 
         // 设置样式
-        chartContainer.style.position = "fixed"
-        chartContainer.style.top = "0"
-        chartContainer.style.left = "0"
-        chartContainer.style.width = "100vw"
-        chartContainer.style.height = "100vh"
-        chartContainer.style.zIndex = "99999999"
-        chartContainer.style.boxSizing = "border-box"
-        chartContainer.style.overflow = "hidden"
+        const __private_css = `
+        #os-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 99999999;
+            box-sizing: border-box;
+            overflow: hidden;
+            background-color: #000;
+            animation: os-alter-hide ${delay - 600}ms ease-in-out forwards ${
+            duration - 0 + 600
+        }ms;
+        }
+        @keyframes os-alter-hide {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }`
+        document.head.insertAdjacentHTML("beforeend", `<style>${__private_css}</style>`)
 
         // 创建echarts
         const myChart = echarts.init(chartContainer, "dark", {
@@ -77,7 +95,11 @@
         }
         myChart.setOption(option) // 开始动画播放
         myChart.on("finished", () => {
-            chartContainer.parentNode.removeChild(chartContainer)
+            if (!remover) return
+            setTimeout(
+                () => chartContainer.parentNode.removeChild(chartContainer),
+                delay
+            )
         })
         // window.addEventListener("resize", myChart.resize)
     } catch (error) {
