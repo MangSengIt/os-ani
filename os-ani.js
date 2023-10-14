@@ -40,7 +40,7 @@
         document.head.insertAdjacentHTML("beforeend", `<style>${__private_css}</style>`)
 
         // 创建echarts
-        const myChart = echarts.init(chartContainer, "dark", {
+        const myChart = echarts.init(chartContainer, "transparent", {
             renderer: "canvas",
             useDirtyRect: false,
         })
