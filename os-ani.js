@@ -10,6 +10,7 @@
         const delay = chartContainer.getAttribute("data-delay") || 2000
         const stroke = chartContainer.getAttribute("data-stroke") || "#fff"
         const fontSize = chartContainer.getAttribute("data-font-size") || "120px"
+        const background = chartContainer.getAttribute("data-background") || "#000"
         const remover = chartContainer.hasAttribute("remover")
 
         // 设置样式
@@ -23,9 +24,9 @@
             z-index: 99999999;
             box-sizing: border-box;
             overflow: hidden;
-            background-color: #000;
-            animation: os-alter-hide ${delay - 600}ms ease-in-out forwards ${
-            duration - 0 + 600
+            background-color: ${background};
+            animation: os-alter-hide ${delay - 400}ms ease-in-out forwards ${
+            duration - 0 + 400
         }ms;
         }
         @keyframes os-alter-hide {
